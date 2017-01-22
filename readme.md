@@ -2,6 +2,8 @@
 
 Follow random people on GitHub
 
+[Demo on codepen.io](http://codepen.io/dikarel/pen/ggWBqP)
+
 <img width="316" alt="screen shot 2017-01-22 at 3 38 48 pm" src="https://cloud.githubusercontent.com/assets/15131271/22187306/ea9d7af8-e0b8-11e6-912b-5df89198f191.png">
 
 ## Commands
