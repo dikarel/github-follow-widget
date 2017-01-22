@@ -4,7 +4,7 @@ import {GithubThrottledState, PossiblyOfflineState} from '../models/States'
 import React from 'react'
 
 export default function Widget (props) {
-  const {profiles, profileStates, onReloadAll, onReload, state} = props
+  const {profiles, profileStates, onReloadAll, onReload, state, onTryAgain} = props
 
   return (
     <div className='suggestions-panel panel panel-default'>
@@ -40,9 +40,9 @@ export default function Widget (props) {
   // TODO: Instead of reload all, have tryAgain reload only those with error states
   function footer () {
     if (state === GithubThrottledState) {
-      return <div className='panel-footer'><span className='glyphicon glyphicon-warning-sign' /> You are being throttled by GitHub &middot; <a onClick={onReloadAll}>try again</a></div>
+      return <div className='panel-footer'>You are being throttled by GitHub &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
     } else if (state === PossiblyOfflineState) {
-      return <div className='panel-footer'><span className='glyphicon glyphicon-warning-sign' /> You might be offline &middot; <a onClick={onReloadAll}>try again</a></div>
+      return <div className='panel-footer'>You might be offline &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
     }
     return []
   }

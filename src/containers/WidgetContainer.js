@@ -29,6 +29,7 @@ export default class WidgetContainer extends Component {
       state={this.state.state}
       onReload={(i) => this._vm.reload(i)}
       onReloadAll={() => this._vm.reloadAll()}
+      onTryAgain={() => this._vm.tryAgain()}
     />
   }
 }
