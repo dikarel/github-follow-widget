@@ -1,10 +1,7 @@
 import ImmutableStore from 'immutable-js-store'
+import {LoadingState, ErrorState, IdleState, GithubThrottledState, PossiblyOfflineState} from '../models/States'
 import {List} from 'immutable'
 import Promise from 'bluebird'
-
-export const LoadingState = Symbol('loading')
-export const ErrorState = Symbol('error')
-export const IdleState = Symbol('idle')
 
 const emptyPromise = Promise.method(() => {})
 
@@ -15,7 +12,8 @@ export default class WidgetViewModel {
     this._disableLogging = disableLogging
     this._store = new ImmutableStore({
       profiles: new List(new Array(numProfiles)),
-      states: new List(new Array(numProfiles))
+      profileStates: new List(new Array(numProfiles)),
+      state: IdleState
     })
   }
 
@@ -25,8 +23,13 @@ export default class WidgetViewModel {
   }
 
   // Return a list of states for each profile (LoadingState/ErrorState/IdleState)
-  get states () {
-    return this._store.get('states')
+  get profileStates () {
+    return this._store.get('profileStates')
+  }
+
+  // Return overall state (IdleState/GithubThrottledState/PossiblyOfflineState)
+  get state () {
+    return this._store.get('state')
   }
 
   // Reload all profiles
@@ -44,13 +47,13 @@ export default class WidgetViewModel {
   // Reload a specific profile (by index)
   // Returns a promise to indicate completion
   reload (index) {
-    const states = this._store.get('states')
-    const state = states.get(index, IdleState)
+    const profileStates = this._store.get('profileStates')
+    const state = profileStates.get(index, IdleState)
     if (state === LoadingState) return emptyPromise()
 
     if (!this._disableLogging) console.log('Reloading', index)
 
-    this._store.set('states', states.set(index, LoadingState))
+    this._store.set('profileStates', profileStates.set(index, LoadingState))
 
     return this._userProfileService
       .getRandomProfile()
@@ -59,14 +62,23 @@ export default class WidgetViewModel {
 
         const profiles = this._store.get('profiles')
         this._store.set('profiles', profiles.set(index, profile))
-        const states = this._store.get('states')
-        this._store.set('states', states.set(index, IdleState))
+        const profileStates = this._store.get('profileStates')
+        this._store.set('profileStates', profileStates.set(index, IdleState))
+        this._store.set('state', IdleState)
       })
       .catch((err) => {
         if (!this._disableLogging) console.error('Error reloading', index, err)
 
-        const states = this._store.get('states')
-        this._store.set('states', states.set(index, ErrorState))
+        const profileStates = this._store.get('profileStates')
+        this._store.set('profileStates', profileStates.set(index, ErrorState))
+
+        if (err.status === 403) {
+          this._store.set('state', GithubThrottledState)
+        } else if (err.status === 0) {
+          this._store.set('state', PossiblyOfflineState)
+        } else {
+          this._store.set('state', IdleState)
+        }
       })
   }
 

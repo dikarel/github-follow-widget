@@ -1,0 +1,5 @@
+export const LoadingState = 'loading'
+export const ErrorState = 'error'
+export const IdleState = 'idle'
+export const GithubThrottledState = 'githubThrottled'
+export const PossiblyOfflineState = 'possiblyOffline'

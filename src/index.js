@@ -19,16 +19,26 @@ const widgetVm = new WidgetViewModel(userProfileService, numProfiles)
 // Render widget
 ReactDOM.render(<WidgetContainer vm={widgetVm} />, document.getElementById('app'))
 
-// TODO: GitHub infinite user ID spring
-// TODO: GitHub user profile getter
-// TODO: If there's an API fetch error, show "Error refreshing -- try again?"
-// TODO: If loading takes more than 2 secs, show loading indicator
+// TODO: Cache GitHub usernames in a buffer to lower # of calls
 // TODO: GitHub throttling UX
 // TODO: No internet UX
-// TODO: Implement GitHub API service
+// TODO: If there's an API fetch error, show "Error refreshing -- try again?"
+// TODO: If loading takes more than 2 secs, show loading indicator
 // TODO: Test with super-long names
 // TODO: Test with weird charactered names
 // TODO: Implement unit tests
 // TODO: Test Safari
 // TODO: Test Mozilla
 // TODO: Test IE
+// TODO: Use localStorage to remember the last 3 profiles + "since"
+
+/*
+
+HTTP 403
+
+documentation_url:
+  "https://developer.github.com/v3/#rate-limiting"
+message:
+  "API rate limit exceeded for 71.198.62.122. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)"
+
+*/

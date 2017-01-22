@@ -7,9 +7,9 @@ export default class WidgetContainer extends Component {
   constructor (props) {
     super()
     this._vm = props.vm
-    this.state = { profiles: this._vm.profiles, states: this._vm.states }
+    this.state = { profiles: this._vm.profiles, profileStates: this._vm.profileStates, state: this._vm.state }
     this.unsubscribe = this._vm.subscribe(() => {
-      this.setState({ profiles: this._vm.profiles, states: this._vm.states })
+      this.setState({ profiles: this._vm.profiles, profileStates: this._vm.profileStates, state: this._vm.state })
     })
   }
 
@@ -25,7 +25,8 @@ export default class WidgetContainer extends Component {
   render () {
     return <Widget
       profiles={this.state.profiles}
-      states={this.state.states}
+      profileStates={this.state.profileStates}
+      state={this.state.state}
       onReload={(i) => this._vm.reload(i)}
       onReloadAll={() => this._vm.reloadAll()}
     />

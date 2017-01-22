@@ -1,10 +1,10 @@
-import {ReloadState} from '../view-models/WidgetViewModel'
+import {LoadingState} from '../models/States'
 import React from 'react'
 
 export default function ProfileRow (props) {
   const {onReload, profile, state} = props
   const {avatarUrl, realName, username, profileUrl} = profile
-  const reloading = (state === ReloadState)
+  const reloading = (state === LoadingState)
   const rowClassName = 'suggestions-row media' + (reloading ? ' reloading' : '')
 
   return (
