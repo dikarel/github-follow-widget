@@ -27,6 +27,5 @@ ReactDOM.render(<WidgetContainer vm={widgetVm} />, document.getElementById('app'
 // TODO: Test with weird charactered names
 // TODO: A happier-looking placeholder avatar
 // TODO: Screenshot tests
-// TODO: Use CDN for 3rd party deps
 // TODO: Collect all strings in one file
 // TODO: Ensure CSS class names match JS names
