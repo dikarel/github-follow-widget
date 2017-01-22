@@ -30,7 +30,7 @@ export default function Widget (props) {
   }
 
   function rows () {
-    return (profiles || new List())
+    return profiles
       .toJS()
       .map((profile, i) => {
         if (!profile) return <PlaceholderRow key={i} />
