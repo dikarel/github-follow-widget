@@ -23,8 +23,8 @@
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "compile": "webpack",
+    "start": "webpack-dev-server",
+    "compile": "webpack && cp public/index.html dist && cp public/index.css dist",
     "test": "mocha --compilers js:babel-core/register test/**/*.spec.js",
     "lint": "standard --fix"
   },
