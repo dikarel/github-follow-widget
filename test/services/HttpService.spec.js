@@ -1,5 +1,5 @@
 import {describe, it} from 'mocha'
-import HttpService from '../src/services/HttpService'
+import HttpService from '../../src/services/HttpService'
 import Promise from 'bluebird'
 import expect from 'expect'
 

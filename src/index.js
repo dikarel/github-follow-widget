@@ -41,8 +41,8 @@ function fakeError () {
 // TODO: Test Safari
 // TODO: Test Mozilla
 // TODO: Test IE
-// TODO: If loading takes more than 2 secs, show loading indicator
 // TODO: React component render tests
+// TODO: If loading takes more than 2 secs, show loading indicator
 // TODO: Use localStorage to remember the last 3 profiles + "since"
 // TODO: Test with weird charactered names
 // TODO: A happier-looking placeholder avatar

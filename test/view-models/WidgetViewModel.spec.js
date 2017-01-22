@@ -1,6 +1,6 @@
 import {describe, it, beforeEach} from 'mocha'
-import Profile from '../src/models/Profile'
-import WidgetViewModel from '../src/view-models/WidgetViewModel'
+import Profile from '../../src/models/Profile'
+import WidgetViewModel from '../../src/view-models/WidgetViewModel'
 import {LoadingState, IdleState, ErrorState, GithubThrottledState, PossiblyOfflineState} from '../src/models/States'
 import Promise from 'bluebird'
 import List from 'immutable'
