@@ -44,7 +44,7 @@ export default function Widget (props) {
   // TODO: Offer better help
   function footer () {
     if (state === GithubThrottledState) {
-      return <div className='panel-footer suggestions-error'>You are being throttled by GitHub &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
+      return <div className='panel-footer suggestions-error'>You are being throttled by GitHub &middot; <a href='https://developer.github.com/v3/#rate-limiting'>find out more</a></div>
     } else if (state === PossiblyOfflineState) {
       return <div className='panel-footer suggestions-error'>You might be offline &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
     } else if (state === ErrorState) {
