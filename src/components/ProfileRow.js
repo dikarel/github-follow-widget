@@ -4,8 +4,8 @@ import React from 'react'
 export default function ProfileRow (props) {
   const {onReload, profile, state} = props
   const {avatarUrl, name, username, profileUrl} = profile
-  const reloading = (state === LoadingState || state === ErrorState)
-  const rowClassName = 'widget-row media' + (reloading ? ' reloading' : '')
+  const ephemeral = (state === LoadingState || state === ErrorState)
+  const rowClassName = 'widget-row media' + (ephemeral ? ' ephemeral' : '')
 
   return (
     <div className={rowClassName} title={name + ' - ' + username}>
