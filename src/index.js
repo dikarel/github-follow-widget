@@ -47,3 +47,5 @@ function fakeError () {
 // TODO: Test with weird charactered names
 // TODO: A happier-looking placeholder avatar
 // TODO: Screenshot tests
+// TODO: Use CDN for 3rd party deps
+// TODO: Collect all strings in one file
