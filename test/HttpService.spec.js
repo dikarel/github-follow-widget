@@ -17,18 +17,32 @@ describe('HttpService', () => {
         .then((res) => expect(res).toEqual('hello world'))
     })
 
-    it('throws an error if HTTP response is not OK', () => {
+    it('throws an error with status if HTTP response is not OK', () => {
       global.fetch = Promise.method(() => ({
-        ok: false
+        ok: false,
+        status: 404
       }))
 
       const httpService = new HttpService()
-      let errorThrown = false
+      let correctErrorThrown = false
 
       return httpService
         .getJson('url')
-        .catch(() => { errorThrown = true })
-        .finally(() => expect(errorThrown).toBe(true))
+        .catch((err) => { correctErrorThrown = (err.status === 404) })
+        .finally(() => expect(correctErrorThrown).toBe(true))
+    })
+
+    it('throws an error with status 0 if there was a connection issue', () => {
+      // TODO: Confirm whether or not 'Failed to fetch' is actually in the specs
+      global.fetch = Promise.method(() => { throw new Error('Failed to fetch') })
+
+      const httpService = new HttpService()
+      let correctErrorThrown = false
+
+      return httpService
+        .getJson('url')
+        .catch((err) => { correctErrorThrown = (err.status === 0) })
+        .finally(() => expect(correctErrorThrown).toBe(true))
     })
   })
 })
