@@ -22,6 +22,11 @@ export default class UsernameService {
         this._lastId = users[0].id
         return users[0].login
       })
+      .catch((err) => {
+        // If we encounter an error, restart from an fresh promise (otherwise, subsequent promises will always error out)
+        this._latestPromise = emptyPromise()
+        throw err
+      })
 
     return this._latestPromise
   }
