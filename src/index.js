@@ -1,4 +1,4 @@
-import {LoadingState, ErrorState, IdleState, GithubThrottledState, PossiblyOfflineState} from './models/States'
+import {GithubThrottledState, PossiblyOfflineState} from './models/States'
 import WidgetViewModel from './view-models/WidgetViewModel'
 import UserProfileService from './services/UserProfileService'
 import HttpService from './services/HttpService'
