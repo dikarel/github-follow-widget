@@ -20,7 +20,7 @@ export default function ProfileRow (props) {
           &nbsp;
           <span className='suggestions-username'>{username}</span>
         </h5>
-        <a className='btn btn-sm btn-default' href={profileUrl} role='button'>
+        <a className='btn btn-sm btn-default' href={profileUrl} role='button' target='_blank'>
           <span className='glyphicon glyphicon-user' />
           &nbsp;
           Profile
