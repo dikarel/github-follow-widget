@@ -4,16 +4,16 @@ import {List} from 'immutable'
 import ProfileRow from './ProfileRow'
 import React from 'react'
 
-const StaggerDelay = 500
+const staggerDelay = 500
 
 export default function Widget (props) {
-  const {profiles, onRefresh, onReload} = props
-  const rows = (profiles || List())
+  const {profiles, states, onReloadAll, onReload} = props
+  const rows = (profiles || new List())
     .toJS()
     .map((profile, i) => {
       if (!profile) return <div key={i}><PlaceholderRow /></div>
       return <div key={i}>
-        <ProfileRow profile={profile} onReload={() => onReload(i)} />
+        <ProfileRow profile={profile} state={states[i]} onReload={() => onReload(i)} />
       </div>
     })
 
@@ -24,11 +24,11 @@ export default function Widget (props) {
           Who to follow
           <span className='suggestions-refresh'>
             &nbsp;&middot;&nbsp;
-            <a onClick={onRefresh}>Refresh</a>
+            <a onClick={onReloadAll}>Refresh</a>
           </span>
         </h4>
 
-        <Stagger transition='fadeIn' delay={StaggerDelay}>
+        <Stagger transition='fadeIn' delay={staggerDelay}>
           {rows}
         </Stagger>
       </div>

@@ -9,7 +9,9 @@ export default class UsernameService {
     const url = 'https://api.github.com/users?since=' + encodeURIComponent(this._lastId)
     return this._httpService
       .getJson(url)
-      .tap((users) => { this._lastId = users[0].id })
-      .then((users) => users[0].login)
+      .then((users) => {
+        this._lastId = users[0].id
+        return users[0].login
+      })
   }
 }

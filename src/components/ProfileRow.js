@@ -1,9 +1,11 @@
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import {ReloadState} from '../view-models/WidgetViewModel'
 import React from 'react'
 
 export default function ProfileRow (props) {
-  const {onReload, profile} = props
-  const {avatarUrl, realName, username, profileUrl, reloading} = profile
+  const {onReload, profile, state} = props
+  const {avatarUrl, realName, username, profileUrl} = profile
+  const reloading = (state === ReloadState)
   const rowClassName = 'suggestions-row media' + (reloading ? ' reloading' : '')
 
   return (
