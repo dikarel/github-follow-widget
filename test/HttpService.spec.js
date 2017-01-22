@@ -7,7 +7,7 @@ describe('HttpService', () => {
   describe('getJson', () => {
     it('promises a JSON representation of a GET call to a URL', () => {
       const fetch = Promise.method(() => ({
-        ok: () => true,
+        ok: true,
         json: () => 'hello world'
       }))
 
@@ -19,7 +19,7 @@ describe('HttpService', () => {
 
     it('throws an error if HTTP response is not OK', () => {
       const fetch = Promise.method(() => ({
-        ok: () => false
+        ok: false
       }))
 
       const httpService = new HttpService(fetch)

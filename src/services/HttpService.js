@@ -10,7 +10,7 @@ export default class HttpService {
   getJson (url) {
     return this._fetch(url)
       .then((res) => {
-        if (!res.ok()) throw new Error('HTTP ' + res.statusCode)
+        if (!res.ok) throw new Error('HTTP ' + res.statusCode)
         return res.json()
       })
   }

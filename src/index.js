@@ -1,43 +1,23 @@
-import FollowSuggestionsVM from './vm'
-import Widget from './components/Widget'
+import WidgetViewModel from './view-models/WidgetViewModel'
+import UserProfileService from './services/UserProfileService'
+import HttpService from './services/HttpService'
+import UsernameService from './services/UsernameService'
+import WidgetContainer from './containers/WidgetContainer'
 import ReactDOM from 'react-dom'
 import React from 'react'
+import 'whatwg-fetch'
+ 
+// Configuration
+const numProfiles = 3
 
-class FollowSuggestions extends React.Component {
-  constructor () {
-    super()
-    this.vm = new FollowSuggestionsVM()
-    this.state = { profiles: this.vm.profiles }
-  }
+// Prepare services and view-models
+const httpService = new HttpService()
+const usernameService = new UsernameService(httpService)
+const userProfileService = new UserProfileService(usernameService, httpService)
+const widgetVm = new WidgetViewModel(userProfileService, numProfiles)
 
-  componentWillMount () {
-    this.vm.dataChanged = () => this.vmDataChanged()
-    this.vm.reloadAll()
-  }
-
-  componentWillUnmount () {
-    this.vm.dataChanged = null
-  }
-
-  render () {
-    return <Widget
-      profiles={this.state.profiles}
-      onReload={(i) => this.vm.reloadProfile(i)}
-      onRefresh={() => this.vm.reloadAll()}
-      />
-  }
-
-  vmDataChanged () {
-    this.setState({
-      profiles: this.vm.profiles,
-      requestingFreshData: this.vm.requestingFreshData,
-      dataChanged: this.vm.dataChanged,
-      error: this.vm.error
-    })
-  }
-}
-
-ReactDOM.render(<FollowSuggestions />, document.getElementById('app'))
+// Render widget
+ReactDOM.render(<WidgetContainer vm={widgetVm} />, document.getElementById('app'))
 
 // TODO: GitHub infinite user ID spring
 // TODO: GitHub user profile getter
