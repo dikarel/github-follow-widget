@@ -1,4 +1,4 @@
-import {GithubThrottledState, PossiblyOfflineState} from './models/States'
+import {GithubThrottledState, PossiblyOfflineState, ErrorState} from './models/States'
 import WidgetViewModel from './view-models/WidgetViewModel'
 import UserProfileService from './services/UserProfileService'
 import HttpService from './services/HttpService'
@@ -23,6 +23,7 @@ ReactDOM.render(<div>
   <br />
   <button onClick={fakeGitHubThrottle}>Fake GH throttle</button>
   <button onClick={fakeOffline}>Fake offline</button>
+  <button onClick={fakeError}>Fake error</button>
 </div>, document.getElementById('app'))
 
 function fakeGitHubThrottle () {
@@ -33,9 +34,11 @@ function fakeOffline () {
   widgetVm._store.set('state', PossiblyOfflineState)
 }
 
+function fakeError () {
+  widgetVm._store.set('state', ErrorState)
+}
+
 // TODO: Cache GitHub usernames in a buffer to lower # of calls
-// TODO: GitHub throttling UX
-// TODO: No internet UX
 // TODO: If there's an API fetch error, show "Error refreshing -- try again?"
 // TODO: If loading takes more than 2 secs, show loading indicator
 // TODO: Test with super-long names
@@ -45,6 +48,7 @@ function fakeOffline () {
 // TODO: Test Mozilla
 // TODO: Test IE
 // TODO: Use localStorage to remember the last 3 profiles + "since"
+// TODO: React component render tests
 
 /*
 
