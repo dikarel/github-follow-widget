@@ -46,3 +46,4 @@ function fakeError () {
 // TODO: Use localStorage to remember the last 3 profiles + "since"
 // TODO: Test with weird charactered names
 // TODO: A happier-looking placeholder avatar
+// TODO: Screenshot tests
