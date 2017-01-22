@@ -22,7 +22,7 @@
   "scripts": {
     "start": "webpack-dev-server --content-base public",
     "compile": "webpack",
-    "test": "mocha --compilers js:babel-core/register test/**/*.spec.js"
+    "test": "mocha --compilers js:babel-core/register test/*spec.js"
   },
   "babel": {
     "presets": [
