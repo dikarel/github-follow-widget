@@ -3,6 +3,8 @@ import ProfileRow from './ProfileRow'
 import {GithubThrottledState, PossiblyOfflineState} from '../models/States'
 import React from 'react'
 
+const trendingDevelopersUrl = 'https://github.com/trending/developers'
+
 export default function Widget (props) {
   const {profiles, profileStates, onReloadAll, onReload, state, onTryAgain} = props
 
@@ -23,6 +25,8 @@ export default function Widget (props) {
         <span className='suggestions-refresh'>
           &nbsp;&middot;&nbsp;
           <a onClick={onReloadAll}>Refresh</a>
+          &nbsp;&middot;&nbsp;
+          <a href={trendingDevelopersUrl} target='_blank'>View all</a>
         </span>
       </h4>
     )
