@@ -34,7 +34,7 @@
   display: block;
 }
 
-.widget-row.reloading {
+.widget-row.ephemeral {
   opacity: 0.2;
   pointer-events: none;
 }
