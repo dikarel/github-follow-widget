@@ -18,25 +18,7 @@ const userProfileService = new UserProfileService(usernameService, httpService)
 const widgetVm = new WidgetViewModel(userProfileService, numProfiles)
 
 // Render widget
-ReactDOM.render(<div>
-  <WidgetContainer vm={widgetVm} />
-  <br />
-  <button onClick={fakeGitHubThrottle}>Fake GH throttle</button>
-  <button onClick={fakeOffline}>Fake offline</button>
-  <button onClick={fakeError}>Fake error</button>
-</div>, document.getElementById('app'))
-
-function fakeGitHubThrottle () {
-  widgetVm._store.set('state', GithubThrottledState)
-}
-
-function fakeOffline () {
-  widgetVm._store.set('state', PossiblyOfflineState)
-}
-
-function fakeError () {
-  widgetVm._store.set('state', ErrorState)
-}
+ReactDOM.render(<WidgetContainer vm={widgetVm} />, document.getElementById('app'))
 
 // TODO: Test Safari
 // TODO: Test Mozilla
