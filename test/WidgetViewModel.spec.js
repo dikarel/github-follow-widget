@@ -1,10 +1,12 @@
 import {describe, it, beforeEach} from 'mocha'
 import Profile from '../src/models/Profile'
 import WidgetViewModel from '../src/view-models/WidgetViewModel'
-import {LoadingState, IdleState, ErrorState} from '../src/models/States'
+import {LoadingState, IdleState, ErrorState, GithubThrottledState, PossiblyOfflineState} from '../src/models/States'
 import Promise from 'bluebird'
 import List from 'immutable'
 import expect from 'expect'
+
+// TODO: Cleanup
 
 describe('WidgetViewModel', () => {
   describe('tryAgain', () => {
@@ -19,6 +21,18 @@ describe('WidgetViewModel', () => {
       widgetVm.tryAgain()
       expect(widgetVm.profileStates.get(0)).toBe(IdleState)
       expect(widgetVm.profileStates.get(1)).toBe(LoadingState)
+    })
+
+    it('resets overall state to IdleState', () => {
+      const userProfileService = {
+        getRandomProfile: Promise.method(() => new Profile({name: 'hello world'}))
+      }
+
+      const widgetVm = new WidgetViewModel(userProfileService, 2, true)
+      widgetVm._store.set('state', ErrorState)
+
+      widgetVm.tryAgain()
+      expect(widgetVm.state).toBe(IdleState)
     })
   })
 
@@ -36,11 +50,23 @@ describe('WidgetViewModel', () => {
           expect(widgetVm.profiles.get(1).name).toBe('hello world')
         })
     })
+
+    it('resets overall state to IdleState', () => {
+      const userProfileService = {
+        getRandomProfile: Promise.method(() => new Profile({name: 'hello world'}))
+      }
+
+      const widgetVm = new WidgetViewModel(userProfileService, 2, true)
+      widgetVm._store.set('state', ErrorState)
+
+      widgetVm.reloadAll()
+      expect(widgetVm.state).toBe(IdleState)
+    })
   })
 
   describe('reload', () => {
     describe('when loading', () => {
-      it('sets state to Loading', () => {
+      it('sets profile state to Loading', () => {
         const userProfileService = {
           getRandomProfile: () => Promise.delay(5000)
         }
@@ -49,10 +75,22 @@ describe('WidgetViewModel', () => {
         widgetVm.reload(0)
         expect(widgetVm.profileStates.get(0)).toBe(LoadingState)
       })
+
+      it('resets overall state to IdleState', () => {
+        const userProfileService = {
+          getRandomProfile: Promise.method(() => new Profile({name: 'hello world'}))
+        }
+
+        const widgetVm = new WidgetViewModel(userProfileService, 1, true)
+        widgetVm._store.set('state', ErrorState)
+
+        widgetVm.reload(0)
+        expect(widgetVm.state).toBe(IdleState)
+      })
     })
 
     describe('if there is an error', () => {
-      it('sets state to Error', () => {
+      it('sets profile state to Error', () => {
         const userProfileService = {
           getRandomProfile: Promise.method(() => { throw new Error() })
         }
@@ -61,6 +99,51 @@ describe('WidgetViewModel', () => {
         return widgetVm
           .reload(0)
           .then(() => expect(widgetVm.profileStates.get(0)).toBe(ErrorState))
+      })
+
+      it('sets overall state to Error', () => {
+        const userProfileService = {
+          getRandomProfile: Promise.method(() => { throw new Error() })
+        }
+
+        const widgetVm = new WidgetViewModel(userProfileService, 1, true)
+        return widgetVm
+          .reload(0)
+          .then(() => expect(widgetVm.state).toBe(ErrorState))
+      })
+    })
+
+    describe('if throttled by GitHub', () => {
+      it('sets overall state to GithubThrottledState', () => {
+        const userProfileService = {
+          getRandomProfile: Promise.method(() => {
+            const err = new Error()
+            err.status = 403
+            throw err
+          })
+        }
+
+        const widgetVm = new WidgetViewModel(userProfileService, 1, true)
+        return widgetVm
+          .reload(0)
+          .then(() => expect(widgetVm.state).toBe(GithubThrottledState))
+      })
+    })
+
+    describe('if there was a connection issue', () => {
+      it('sets overall state to PossiblyOfflineState', () => {
+        const userProfileService = {
+          getRandomProfile: Promise.method(() => {
+            const err = new Error()
+            err.status = 0
+            throw err
+          })
+        }
+
+        const widgetVm = new WidgetViewModel(userProfileService, 1, true)
+        return widgetVm
+          .reload(0)
+          .then(() => expect(widgetVm.state).toBe(PossiblyOfflineState))
       })
     })
 

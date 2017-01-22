@@ -42,6 +42,7 @@ export default class WidgetViewModel {
       promises.push(this.reload(i))
     })
 
+    this._store.set('state', IdleState)
     return Promise.all(promises)
   }
 
@@ -54,6 +55,7 @@ export default class WidgetViewModel {
       promises.push(this.reload(i))
     })
 
+    this._store.set('state', IdleState)
     return Promise.all(promises)
   }
 
@@ -67,6 +69,7 @@ export default class WidgetViewModel {
     if (!this._disableLogging) console.log('Reloading', index)
 
     this._store.set('profileStates', profileStates.set(index, LoadingState))
+    this._store.set('state', IdleState)
 
     return this._userProfileService
       .getRandomProfile()
@@ -82,7 +85,7 @@ export default class WidgetViewModel {
       .catch((err) => {
         if (!this._disableLogging) console.error('Error reloading', index, err)
 
-        const profileStates = this._store.get('profileStates')
+        let profileStates = this._store.get('profileStates')
         this._store.set('profileStates', profileStates.set(index, ErrorState))
 
         if (err.status === 403) {
@@ -90,7 +93,7 @@ export default class WidgetViewModel {
         } else if (err.status === 0) {
           this._store.set('state', PossiblyOfflineState)
         } else {
-          this._store.set('state', IdleState)
+          this._store.set('state', ErrorState)
         }
       })
   }
