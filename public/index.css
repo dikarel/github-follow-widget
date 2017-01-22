@@ -18,9 +18,6 @@
 
 .suggestions-row {
   display: block;
-  height: 56px;
-  margin: 8px 0;
-  transition: 0.1s ease-in-out all;
 }
 
 .suggestions-row.reloading {
@@ -90,22 +87,4 @@
 .suggestions-refresh a {
   color: #000;
   cursor: pointer;
-}
-
-.fadeIn-enter {
-  opacity: 0;
-  transition: 0.5s ease-in-out all;
-}
-
-.fadeIn-enter.fadeIn-enter-active {
-  opacity: 1;
-}
-
-.example-appear {
-  opacity: 0.01;
-}
-
-.example-appear.example-appear-active {
-  opacity: 1;
-  transition: opacity 0.1s ease-in;
 }
