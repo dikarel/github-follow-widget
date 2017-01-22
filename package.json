@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "compile": "webpack -p && cp public/index.html dist && cp public/index.css dist",
+    "compile": "NODE_ENV=production webpack -p && cp public/index.html dist && cp public/index.css dist",
     "test": "mocha --compilers js:babel-core/register test/**/*.spec.js",
     "lint": "standard --fix"
   },
