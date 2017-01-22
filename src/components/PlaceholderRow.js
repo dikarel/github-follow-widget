@@ -2,17 +2,17 @@ import React from 'react'
 
 export default function PlaceholderRow () {
   return (
-    <div className='suggestions-row media'>
+    <div className='widget-row media'>
       <div className='media-left'>
-        <div className='suggestions-avatar placeholder' />
+        <div className='widget-avatar placeholder' />
       </div>
       <div className='media-body'>
         <h5 className='media-heading'>
-          <span className='suggestions-realname placeholder' />
+          <span className='widget-realname placeholder' />
             &nbsp;
-          <span className='suggestions-username placeholder' />
+          <span className='widget-username placeholder' />
         </h5>
-        <div className='suggestions-profile placeholder' />
+        <div className='widget-profile placeholder' />
       </div>
     </div>
   )

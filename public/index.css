@@ -1,11 +1,9 @@
-/* TODO: Rename suggestions to widget */
-
-.suggestions-error {
+.widget-error {
   background: #f9f2f4;
   color: #d44950;
 }
 
-.suggestions-panel {
+.widget-panel {
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -15,12 +13,12 @@
   display: inline-block;
 }
 
-.suggestions-panel .panel-footer {
+.widget-panel .panel-footer {
   font-size: 12px;
   line-height: 1.8em;
 }
 
-.suggestions-names {
+.widget-names {
   max-width: 180px;
   white-space: nowrap;
   overflow: hidden;
@@ -28,42 +26,42 @@
   font-size: 13px;
 }
 
-.suggestions-realname {
+.widget-realname {
   font-weight: bold;
 }
 
-.suggestions-row {
+.widget-row {
   display: block;
 }
 
-.suggestions-row.reloading {
+.widget-row.reloading {
   opacity: 0.2;
   pointer-events: none;
 }
 
-.suggestions-username {
+.widget-username {
   font-weight: normal;
   color: #666;
 }
 
-.suggestions-heading {
+.widget-heading {
   font-weight: normal;
   font-size: 17px;
   color: #666;
   margin-top: 0;
 }
 
-.suggestions-avatar {
+.widget-avatar {
   border-radius: 5px;
   width: 50px;
   height: 50px;
 }
 
-.suggestions-avatar.placeholder {
+.widget-avatar.placeholder {
   background: #eee;
 }
 
-.suggestions-realname.placeholder {
+.widget-realname.placeholder {
   height: 1em;
   width: 100px;
   background: #eee;
@@ -71,7 +69,7 @@
   border-radius: 2px;
 }
 
-.suggestions-profile.placeholder {
+.widget-profile.placeholder {
   height: 26px;
   width: 70px;
   background: #eee;
@@ -79,7 +77,7 @@
   border-radius: 3px;
 }
 
-.suggestions-username.placeholder {
+.widget-username.placeholder {
   height: 1em;
   width: 50px;
   background: #eee;
@@ -87,19 +85,19 @@
   border-radius: 2px;
 }
 
-.suggestions-close {
+.widget-close {
   margin: 0;
   line-height: 14px;
   font-weight: normal;
   outline: none;
 }
 
-.suggestions-refresh {
+.widget-refresh {
   color: #000;
   font-size: 0.7em;
 }
 
-.suggestions-refresh a {
+.widget-refresh a {
   color: #000;
   cursor: pointer;
 }
