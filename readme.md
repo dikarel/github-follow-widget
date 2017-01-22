@@ -8,7 +8,7 @@ Follow random people on GitHub
 
 - `npm start`: Run locally on a browser (http://localhost:8080/webpack-dev-server)
 - `npm test`: Run unit tests
-- `npm lint`: Lint project
+- `npm run lint`: Lint project
 - `npm run compile`: Compile project into dist directory
 
 ## Architecture
