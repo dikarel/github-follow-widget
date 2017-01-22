@@ -51,18 +51,22 @@ export default class WidgetViewModel {
     if (!this._disableLogging) console.log('Reloading', index)
 
     this._store.set('states', states.set(index, LoadingState))
+
     return this._userProfileService
       .getRandomProfile()
       .then((profile) => {
-        const states = this._store.get('states')
+        if (!this._disableLogging) console.log('Success reloading', index)
+
         const profiles = this._store.get('profiles')
         this._store.set('profiles', profiles.set(index, profile))
+        const states = this._store.get('states')
         this._store.set('states', states.set(index, IdleState))
       })
       .catch((err) => {
+        if (!this._disableLogging) console.error('Error reloading', index, err)
+
         const states = this._store.get('states')
         this._store.set('states', states.set(index, ErrorState))
-        if (!this._disableLogging) console.error('Error reloading', index, err)
       })
   }
 

@@ -6,7 +6,7 @@ import WidgetContainer from './containers/WidgetContainer'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import 'whatwg-fetch'
- 
+
 // Configuration
 const numProfiles = 3
 

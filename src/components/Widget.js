@@ -1,20 +1,15 @@
 import PlaceholderRow from './PlaceholderRow'
-import Stagger from 'react-css-stagger'
 import {List} from 'immutable'
 import ProfileRow from './ProfileRow'
 import React from 'react'
-
-const staggerDelay = 500
 
 export default function Widget (props) {
   const {profiles, states, onReloadAll, onReload} = props
   const rows = (profiles || new List())
     .toJS()
     .map((profile, i) => {
-      if (!profile) return <div key={i}><PlaceholderRow /></div>
-      return <div key={i}>
-        <ProfileRow profile={profile} state={states[i]} onReload={() => onReload(i)} />
-      </div>
+      if (!profile) return <PlaceholderRow key={i} />
+      return <ProfileRow profile={profile} state={states.get(i)} onReload={() => onReload(i)} key={i} />
     })
 
   return (
@@ -27,10 +22,7 @@ export default function Widget (props) {
             <a onClick={onReloadAll}>Refresh</a>
           </span>
         </h4>
-
-        <Stagger transition='fadeIn' delay={staggerDelay}>
-          {rows}
-        </Stagger>
+        {rows}
       </div>
     </div>
   )
