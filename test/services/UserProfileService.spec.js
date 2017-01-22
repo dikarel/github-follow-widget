@@ -1,7 +1,7 @@
 import {describe, it} from 'mocha'
-import UserProfileService from '../../src/services/UserProfileService'
-import Promise from 'bluebird'
 import expect from 'expect'
+import Promise from 'bluebird'
+import UserProfileService from '../../src/services/UserProfileService'
 
 describe('UserProfileService', () => {
   const httpService = {

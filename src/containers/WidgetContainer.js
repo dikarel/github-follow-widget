@@ -1,5 +1,5 @@
-import Widget from '../components/Widget'
 import React, {Component} from 'react'
+import Widget from '../components/Widget'
 
 export default class WidgetContainer extends Component {
 

@@ -1,7 +1,7 @@
 import {describe, it} from 'mocha'
+import expect from 'expect'
 import HttpService from '../../src/services/HttpService'
 import Promise from 'bluebird'
-import expect from 'expect'
 
 describe('HttpService', () => {
   describe('getJson', () => {

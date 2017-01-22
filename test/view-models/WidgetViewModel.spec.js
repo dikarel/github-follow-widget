@@ -1,12 +1,12 @@
 import {describe, it, beforeEach} from 'mocha'
-import Profile from '../../src/models/Profile'
-import WidgetViewModel from '../../src/view-models/WidgetViewModel'
-import {LoadingState, IdleState, ErrorState, GithubThrottledState, PossiblyOfflineState} from '../../src/models/States'
-import Promise from 'bluebird'
 import {List} from 'immutable'
+import {LoadingState, IdleState, ErrorState, GithubThrottledState, PossiblyOfflineState} from '../../src/models/States'
 import expect from 'expect'
+import Profile from '../../src/models/Profile'
+import Promise from 'bluebird'
+import WidgetViewModel from '../../src/view-models/WidgetViewModel'
 
-// TODO: Cleanup
+// TODO: Refactor (simplify)
 
 describe('WidgetViewModel', () => {
   describe('tryAgain', () => {

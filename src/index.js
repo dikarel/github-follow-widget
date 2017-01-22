@@ -1,12 +1,11 @@
-import {GithubThrottledState, PossiblyOfflineState, ErrorState} from './models/States'
-import WidgetViewModel from './view-models/WidgetViewModel'
-import UserProfileService from './services/UserProfileService'
-import HttpService from './services/HttpService'
-import UsernameService from './services/UsernameService'
-import WidgetContainer from './containers/WidgetContainer'
-import ReactDOM from 'react-dom'
-import React from 'react'
 import 'whatwg-fetch'
+import HttpService from './services/HttpService'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import UsernameService from './services/UsernameService'
+import UserProfileService from './services/UserProfileService'
+import WidgetContainer from './containers/WidgetContainer'
+import WidgetViewModel from './view-models/WidgetViewModel'
 
 // Configuration
 const numProfiles = 3

@@ -1,11 +1,9 @@
 import {describe, it} from 'mocha'
+import {ErrorState, LoadingState, IdleState} from '../../src/models/States'
 import {shallow} from 'enzyme'
 import expect from 'expect'
-import React from 'react'
-import Widget from '../../src/components/Widget'
-import {List} from 'immutable'
 import ProfileRow from '../../src/components/ProfileRow'
-import {GithubThrottledState, PossiblyOfflineState, ErrorState, LoadingState, IdleState} from '../../src/models/States'
+import React from 'react'
 
 describe('ProfileRow', () => {
   const profile = {
@@ -15,7 +13,7 @@ describe('ProfileRow', () => {
     profileUrl: 'http://profile'
   }
 
-  const profileRow = shallow(<ProfileRow profile={profile} state={IdleState}/>)
+  const profileRow = shallow(<ProfileRow profile={profile} state={IdleState} />)
 
   it('renders profile avatar', () => {
     expect(profileRow.find('.widget-avatar').prop('src')).toBe('http://avatar')
@@ -39,14 +37,14 @@ describe('ProfileRow', () => {
 
   describe('when it is reloading', () => {
     it('looks ephemeral', () => {
-      const profileRow = shallow(<ProfileRow profile={{}} state={LoadingState}/>)
+      const profileRow = shallow(<ProfileRow profile={{}} state={LoadingState} />)
       expect(profileRow.find('.widget-row.ephemeral').length).toBeGreaterThan(0)
     })
   })
 
   describe('when there is an error', () => {
     it('looks ephemeral', () => {
-      const profileRow = shallow(<ProfileRow profile={{}} state={ErrorState}/>)
+      const profileRow = shallow(<ProfileRow profile={{}} state={ErrorState} />)
       expect(profileRow.find('.widget-row.ephemeral').length).toBeGreaterThan(0)
     })
   })

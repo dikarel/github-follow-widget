@@ -1,6 +1,6 @@
-import ImmutableStore from 'immutable-js-store'
-import {LoadingState, ErrorState, IdleState, GithubThrottledState, PossiblyOfflineState} from '../models/States'
 import {List} from 'immutable'
+import {LoadingState, ErrorState, IdleState, GithubThrottledState, PossiblyOfflineState} from '../models/States'
+import ImmutableStore from 'immutable-js-store'
 import Promise from 'bluebird'
 
 const emptyPromise = Promise.method(() => {})

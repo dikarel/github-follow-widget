@@ -1,7 +1,7 @@
-import {shallow} from 'enzyme'
-import {describe, it} from 'mocha'
+import {describe, it, beforeEach} from 'mocha'
 import {GithubThrottledState, PossiblyOfflineState, ErrorState} from '../../src/models/States'
 import {List} from 'immutable'
+import {shallow} from 'enzyme'
 import expect from 'expect'
 import PlaceholderRow from '../../src/components/PlaceholderRow'
 import ProfileRow from '../../src/components/ProfileRow'
@@ -27,24 +27,24 @@ describe('Widget', () => {
   })
 
   it('renders a refresh button', () => {
-      const profiles = List()
-      const profileStates = List()
-      const widget = shallow(<Widget profiles={profiles} profileStates={profileStates} />)
-      expect(widget.text()).toMatch(/refresh/i)
+    const profiles = List()
+    const profileStates = List()
+    const widget = shallow(<Widget profiles={profiles} profileStates={profileStates} />)
+    expect(widget.text()).toMatch(/refresh/i)
   })
 
   it('renders a view all button', () => {
-      const profiles = List()
-      const profileStates = List()
-      const widget = shallow(<Widget profiles={profiles} profileStates={profileStates} />)
-      expect(widget.text()).toMatch(/view all/i)
+    const profiles = List()
+    const profileStates = List()
+    const widget = shallow(<Widget profiles={profiles} profileStates={profileStates} />)
+    expect(widget.text()).toMatch(/view all/i)
   })
 
   describe('when it is throttled by GitHub', () => {
     let widget = null
 
     beforeEach(() => {
-      widget = shallow(<Widget profiles={List()} profileStates={List()} state={GithubThrottledState}/>)
+      widget = shallow(<Widget profiles={List()} profileStates={List()} state={GithubThrottledState} />)
     })
 
     it('renders an error message', () => {
@@ -60,7 +60,7 @@ describe('Widget', () => {
     let widget = null
 
     beforeEach(() => {
-      widget = shallow(<Widget profiles={List()} profileStates={List()} state={PossiblyOfflineState}/>)
+      widget = shallow(<Widget profiles={List()} profileStates={List()} state={PossiblyOfflineState} />)
     })
 
     it('renders an error message', () => {
@@ -76,7 +76,7 @@ describe('Widget', () => {
     let widget = null
 
     beforeEach(() => {
-      widget = shallow(<Widget profiles={List()} profileStates={List()} state={ErrorState}/>)
+      widget = shallow(<Widget profiles={List()} profileStates={List()} state={ErrorState} />)
     })
 
     it('renders an error message', () => {

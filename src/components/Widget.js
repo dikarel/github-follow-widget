@@ -1,6 +1,6 @@
+import {GithubThrottledState, PossiblyOfflineState, ErrorState} from '../models/States'
 import PlaceholderRow from './PlaceholderRow'
 import ProfileRow from './ProfileRow'
-import {GithubThrottledState, PossiblyOfflineState, ErrorState} from '../models/States'
 import React from 'react'
 
 const trendingDevelopersUrl = 'https://github.com/trending/developers'
