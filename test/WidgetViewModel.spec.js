@@ -1,10 +1,27 @@
 import {describe, it, beforeEach} from 'mocha'
 import Profile from '../src/models/Profile'
-import WidgetViewModel, {LoadingState, IdleState, ErrorState} from '../src/view-models/WidgetViewModel'
+import WidgetViewModel from '../src/view-models/WidgetViewModel'
+import {LoadingState, IdleState, ErrorState} from '../src/models/States'
 import Promise from 'bluebird'
+import List from 'immutable'
 import expect from 'expect'
 
 describe('WidgetViewModel', () => {
+  describe('tryAgain', () => {
+    it('reloads profiles that have an error state', () => {
+      const userProfileService = {
+        getRandomProfile: Promise.method(() => new Profile({name: 'hello world'}))
+      }
+
+      const widgetVm = new WidgetViewModel(userProfileService, 2, true)
+      widgetVm._store.set('profileStates', List.fromJS([IdleState, ErrorState]))
+
+      widgetVm.tryAgain()
+      expect(widgetVm.profileStates.get(0)).toBe(IdleState)
+      expect(widgetVm.profileStates.get(1)).toBe(LoadingState)
+    })
+  })
+
   describe('reloadAll', () => {
     it('reloads all profiles', () => {
       const userProfileService = {
@@ -30,7 +47,7 @@ describe('WidgetViewModel', () => {
 
         const widgetVm = new WidgetViewModel(userProfileService, 1, true)
         widgetVm.reload(0)
-        expect(widgetVm.states.get(0)).toBe(LoadingState)
+        expect(widgetVm.profileStates.get(0)).toBe(LoadingState)
       })
     })
 
@@ -43,7 +60,7 @@ describe('WidgetViewModel', () => {
         const widgetVm = new WidgetViewModel(userProfileService, 1, true)
         return widgetVm
           .reload(0)
-          .then(() => expect(widgetVm.states.get(0)).toBe(ErrorState))
+          .then(() => expect(widgetVm.profileStates.get(0)).toBe(ErrorState))
       })
     })
 
@@ -61,7 +78,7 @@ describe('WidgetViewModel', () => {
       })
 
       it('sets state to Idle', () => {
-        expect(widgetVm.states.get(0)).toBe(IdleState)
+        expect(widgetVm.profileStates.get(0)).toBe(IdleState)
       })
 
       it('loads in a new profile', () => {

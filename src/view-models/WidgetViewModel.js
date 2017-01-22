@@ -32,14 +32,27 @@ export default class WidgetViewModel {
     return this._store.get('state')
   }
 
+  // Reload again for each profile that got a load error
+  // Returns a promise to indicate completion
+  tryAgain () {
+    const promises = []
+
+    this.profileStates.forEach((state, i) => {
+      if (state !== ErrorState) return
+      promises.push(this.reload(i))
+    })
+
+    return Promise.all(promises)
+  }
+
   // Reload all profiles
   // Returns a promise to indicate completion
   reloadAll () {
     const promises = []
 
-    for (let i = 0; i < this._numProfiles; i++) {
+    this.profiles.forEach((_, i) => {
       promises.push(this.reload(i))
-    }
+    })
 
     return Promise.all(promises)
   }
