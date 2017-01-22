@@ -1,6 +1,6 @@
 import PlaceholderRow from './PlaceholderRow'
 import ProfileRow from './ProfileRow'
-import {GithubThrottledState, PossiblyOfflineState} from '../models/States'
+import {GithubThrottledState, PossiblyOfflineState, ErrorState} from '../models/States'
 import React from 'react'
 
 const trendingDevelopersUrl = 'https://github.com/trending/developers'
@@ -41,12 +41,14 @@ export default function Widget (props) {
       })
   }
 
-  // TODO: Instead of reload all, have tryAgain reload only those with error states
+  // TODO: Offer better help
   function footer () {
     if (state === GithubThrottledState) {
-      return <div className='panel-footer'>You are being throttled by GitHub &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
+      return <div className='panel-footer suggestions-error'>You are being throttled by GitHub &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
     } else if (state === PossiblyOfflineState) {
-      return <div className='panel-footer'>You might be offline &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
+      return <div className='panel-footer suggestions-error'>You might be offline &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
+    } else if (state === ErrorState) {
+      return <div className='panel-footer suggestions-error'>Failed to load suggestions &middot; <a href='#' onClick={onTryAgain}>try again</a></div>
     }
     return []
   }

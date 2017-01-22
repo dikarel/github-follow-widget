@@ -1,3 +1,10 @@
+/* TODO: Rename suggestions to widget */
+
+.suggestions-error {
+  background: #f9f2f4;
+  color: #d44950;
+}
+
 .suggestions-panel {
   user-select: none;
   -webkit-user-select: none;
