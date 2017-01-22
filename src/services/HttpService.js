@@ -7,7 +7,6 @@ export default class HttpService {
   getJson (url) {
     return fetch(url)
       .then((res) => {
-
         // Append HTTP status to error object
         if (!res.ok) {
           const err = new Error('HTTP ' + res.status)
@@ -18,7 +17,6 @@ export default class HttpService {
         return res.json()
       })
       .catch((err) => {
-
         // Set status to 0 for connection failures
         if (err.message.match(/failed to fetch/i)) {
           err.status = 0
