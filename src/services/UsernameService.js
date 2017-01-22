@@ -2,6 +2,8 @@ import Promise from 'bluebird'
 
 const emptyPromise = Promise.method(() => {})
 
+// TODO: Make more random
+
 export default class UsernameService {
   constructor (httpService) {
     this._latestPromise = emptyPromise()
