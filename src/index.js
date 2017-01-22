@@ -1,3 +1,4 @@
+import {LoadingState, ErrorState, IdleState, GithubThrottledState, PossiblyOfflineState} from './models/States'
 import WidgetViewModel from './view-models/WidgetViewModel'
 import UserProfileService from './services/UserProfileService'
 import HttpService from './services/HttpService'
@@ -17,7 +18,20 @@ const userProfileService = new UserProfileService(usernameService, httpService)
 const widgetVm = new WidgetViewModel(userProfileService, numProfiles)
 
 // Render widget
-ReactDOM.render(<WidgetContainer vm={widgetVm} />, document.getElementById('app'))
+ReactDOM.render(<div>
+  <WidgetContainer vm={widgetVm} />
+  <br />
+  <button onClick={fakeGitHubThrottle}>Fake GH throttle</button>
+  <button onClick={fakeOffline}>Fake offline</button>
+</div>, document.getElementById('app'))
+
+function fakeGitHubThrottle () {
+  widgetVm._store.set('state', GithubThrottledState)
+}
+
+function fakeOffline () {
+  widgetVm._store.set('state', PossiblyOfflineState)
+}
 
 // TODO: Cache GitHub usernames in a buffer to lower # of calls
 // TODO: GitHub throttling UX
