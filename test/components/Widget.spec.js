@@ -1,12 +1,12 @@
+import {shallow} from 'enzyme'
 import {describe, it} from 'mocha'
-import { shallow } from 'enzyme'
+import {GithubThrottledState, PossiblyOfflineState, ErrorState} from '../../src/models/States'
+import {List} from 'immutable'
 import expect from 'expect'
+import PlaceholderRow from '../../src/components/PlaceholderRow'
+import ProfileRow from '../../src/components/ProfileRow'
 import React from 'react'
 import Widget from '../../src/components/Widget'
-import {List} from 'immutable'
-import PlaceholderRow from '../../src/components/PlaceholderRow'
-import {GithubThrottledState, PossiblyOfflineState, ErrorState} from '../../src/models/States'
-import ProfileRow from '../../src/components/ProfileRow'
 
 describe('Widget', () => {
   describe('when initially loading', () => {
