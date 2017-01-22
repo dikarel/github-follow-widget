@@ -3,13 +3,26 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   -moz-user-select: none;
-  width: 300;
+  width: 300px;
   margin: 16px;
+  display: inline-block;
+}
+
+.suggestions-panel .panel-footer {
+  font-size: 12px;
+  line-height: 1.8em;
+}
+
+.suggestions-names {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
 }
 
 .suggestions-realname {
   font-weight: bold;
-  font-size: 13px;
 }
 
 .suggestions-row {
@@ -24,7 +37,6 @@
 .suggestions-username {
   font-weight: normal;
   color: #666;
-  font-size: 13px;
 }
 
 .suggestions-heading {
