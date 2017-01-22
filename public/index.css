@@ -7,10 +7,6 @@
   margin: 16px;
 }
 
-.suggestions-panel .panel-body {
-  padding-bottom: 0;
-}
-
 .suggestions-realname {
   font-weight: bold;
   font-size: 13px;

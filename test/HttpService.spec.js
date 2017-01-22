@@ -6,23 +6,23 @@ import expect from 'expect'
 describe('HttpService', () => {
   describe('getJson', () => {
     it('promises a JSON representation of a GET call to a URL', () => {
-      const fetch = Promise.method(() => ({
+      global.fetch = Promise.method(() => ({
         ok: true,
         json: () => 'hello world'
       }))
 
-      const httpService = new HttpService(fetch)
+      const httpService = new HttpService()
       return httpService
         .getJson('url')
         .then((res) => expect(res).toEqual('hello world'))
     })
 
     it('throws an error if HTTP response is not OK', () => {
-      const fetch = Promise.method(() => ({
+      global.fetch = Promise.method(() => ({
         ok: false
       }))
 
-      const httpService = new HttpService(fetch)
+      const httpService = new HttpService()
       let errorThrown = false
 
       return httpService
