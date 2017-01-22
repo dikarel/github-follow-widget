@@ -1,0 +1,111 @@
+.suggestions-panel {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  width: 300;
+  margin: 16px;
+}
+
+.suggestions-panel .panel-body {
+  padding-bottom: 0;
+}
+
+.suggestions-realname {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.suggestions-row {
+  display: block;
+  height: 56px;
+  margin: 8px 0;
+  transition: 0.1s ease-in-out all;
+}
+
+.suggestions-row.reloading {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.suggestions-username {
+  font-weight: normal;
+  color: #666;
+  font-size: 13px;
+}
+
+.suggestions-heading {
+  font-weight: normal;
+  font-size: 17px;
+  color: #666;
+  margin-top: 0;
+}
+
+.suggestions-avatar {
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+.suggestions-avatar.placeholder {
+  background: #eee;
+}
+
+.suggestions-realname.placeholder {
+  height: 1em;
+  width: 100px;
+  background: #eee;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.suggestions-profile.placeholder {
+  height: 26px;
+  width: 70px;
+  background: #eee;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.suggestions-username.placeholder {
+  height: 1em;
+  width: 50px;
+  background: #eee;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.suggestions-close {
+  margin: 0;
+  line-height: 14px;
+  font-weight: normal;
+  outline: none;
+}
+
+.suggestions-refresh {
+  color: #000;
+  font-size: 0.7em;
+}
+
+.suggestions-refresh a {
+  color: #000;
+  cursor: pointer;
+}
+
+.fadeIn-enter {
+  opacity: 0;
+  transition: 0.5s ease-in-out all;
+}
+
+.fadeIn-enter.fadeIn-enter-active {
+  opacity: 1;
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
