@@ -5,7 +5,7 @@ export default class UsernameService {
   }
 
   // Promises a random GitHub username
-  getUsername () {
+  getRandomUsername () {
     const url = 'https://api.github.com/users?since=' + encodeURIComponent(this.lastId)
     return this.httpService
       .getJson(url)

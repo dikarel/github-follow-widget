@@ -12,13 +12,13 @@ describe('UsernameService', () => {
     })
   }
 
-  describe('getUsername', () => {
+  describe('getRandomUsername', () => {
     it('promises unique GitHub usernames', () => {
       const usernameService = new UsernameService(httpService)
       return usernameService
-        .getUsername()
+        .getRandomUsername()
         .then((username) => expect(username).toBe('user-1'))
-        .then(() => usernameService.getUsername())
+        .then(() => usernameService.getRandomUsername())
         .then((username) => expect(username).toBe('user-2'))
     })
   })
