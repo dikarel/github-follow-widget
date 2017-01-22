@@ -29,9 +29,9 @@ describe('UserProfileService', () => {
       return userProfileService
         .getRandomProfile()
         .then((profile) => {
-          expect(profile.login).toBe('octocat')
-          expect(profile.avatar_url).toBe('https://github.com/images/error/octocat_happy.gif')
-          expect(profile.html_url).toBe('https://github.com/octocat')
+          expect(profile.username).toBe('octocat')
+          expect(profile.avatarUrl).toBe('https://github.com/images/error/octocat_happy.gif')
+          expect(profile.profileUrl).toBe('https://github.com/octocat')
           expect(profile.name).toBe('monalisa octocat')
         })
     })

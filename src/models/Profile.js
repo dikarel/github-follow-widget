@@ -1,6 +1,6 @@
 import { Record } from 'immutable'
 
-export const Profile = Record({
+export default Record({
   name: '',
   username: '',
   profileUrl: '',

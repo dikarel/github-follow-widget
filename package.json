@@ -2,6 +2,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "immutable": "^3.8.1",
+    "immutable-js-store": "0.0.3",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-css-stagger": "0.0.3",
