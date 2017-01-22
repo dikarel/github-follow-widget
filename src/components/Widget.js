@@ -26,7 +26,7 @@ export default function Widget (props) {
           &nbsp;&middot;&nbsp;
           <a onClick={onReloadAll}>Refresh</a>
           &nbsp;&middot;&nbsp;
-          <a href={trendingDevelopersUrl} target='_blank'>View all</a>
+          <a href={trendingDevelopersUrl}>View all</a>
         </span>
       </h4>
     )
