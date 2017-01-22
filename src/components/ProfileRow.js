@@ -1,10 +1,10 @@
-import {LoadingState} from '../models/States'
+import {LoadingState, ErrorState} from '../models/States'
 import React from 'react'
 
 export default function ProfileRow (props) {
   const {onReload, profile, state} = props
   const {avatarUrl, name, username, profileUrl} = profile
-  const reloading = (state === LoadingState)
+  const reloading = (state === LoadingState || state === ErrorState)
   const rowClassName = 'suggestions-row media' + (reloading ? ' reloading' : '')
 
   return (
