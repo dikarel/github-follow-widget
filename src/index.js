@@ -19,8 +19,6 @@ const widgetVm = new WidgetViewModel(userProfileService, numProfiles)
 // Render widget
 ReactDOM.render(<WidgetContainer vm={widgetVm} />, document.getElementById('app'))
 
-// TODO: Test Safari
-// TODO: Test Mozilla
 // TODO: Test IE
 // TODO: If loading takes more than 2 secs, show loading indicator
 // TODO: Use localStorage to remember the last 3 profiles + "since"
