@@ -15,7 +15,7 @@ Follow random people on GitHub
 
 The architecture is MVVM-inspired, with UI state management handled by view-models that are then rendered via stateless components.
 
-Business logic is implemented via "service classes", ensuring that model classes don't accumulate business logic over time and become bloated
+Business logic is implemented via services, ensuring that models don't accumulate business logic over time and become bloated
 
 The source code is split into:
 
@@ -24,21 +24,21 @@ The source code is split into:
 - `src/models` - Model definitions and enums
 - `src/services` - Business logic
 - `src/view-models` - Manages UI state; can be subscribed to for changes
+- `src/index.js` - Main entry point; service dependencies are resolved here
 
 ## Test suite
 
-The test suite is not meant to be exhaustive; it is a sanity check to be used in tandem with manual testing.
-As the project progresses, the test suite can be fine-tuned to be more rigorous in bug-prone areas.
+The test suite is a sanity check to be used in tandem with manual testing.
+It can be fine-tuned to be more rigorous in bug-prone areas as the project progresses.
 
 The test suite covers the following:
 - Components
 - Services
-- View-model classes
+- View-models
 
 ## Future improvements
 
-- Redux is recommended as a future replacement to the MVVM architecture if the project gets to the point where it's hard to track data flow
+- Redux is recommended as a replacement to the MVVM architecture if the project gets to the point where it's hard to track data flow
 - Automated browser testing is recommended to verify that the project shows up properly in all browsers
 - TypeScript can be used to provide a better auto-complete experience and to statically enforce types
 - Code coverage can be measured using Istanbul
-
