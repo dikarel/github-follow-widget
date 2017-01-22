@@ -2,17 +2,17 @@ import Profile from '../models/Profile'
 
 export default class UserProfileService {
   constructor (usernameService, httpService) {
-    this.usernameService = usernameService
-    this.httpService = httpService
+    this._usernameService = usernameService
+    this._httpService = httpService
   }
 
   // Promises a random GitHub profile
   getRandomProfile () {
-    return this.usernameService
+    return this._usernameService
       .getRandomUsername()
       .then((username) => {
         const url = 'https://api.github.com/users/' + encodeURIComponent(username)
-        return this.httpService
+        return this._httpService
           .getJson(url)
           .then((ghProfile) => new Profile({
             name: ghProfile.name,
