@@ -1,9 +1,9 @@
 import {describe, it, beforeEach} from 'mocha'
 import Profile from '../../src/models/Profile'
 import WidgetViewModel from '../../src/view-models/WidgetViewModel'
-import {LoadingState, IdleState, ErrorState, GithubThrottledState, PossiblyOfflineState} from '../src/models/States'
+import {LoadingState, IdleState, ErrorState, GithubThrottledState, PossiblyOfflineState} from '../../src/models/States'
 import Promise from 'bluebird'
-import List from 'immutable'
+import {List} from 'immutable'
 import expect from 'expect'
 
 // TODO: Cleanup
@@ -16,7 +16,7 @@ describe('WidgetViewModel', () => {
       }
 
       const widgetVm = new WidgetViewModel(userProfileService, 2, true)
-      widgetVm._store.set('profileStates', List.fromJS([IdleState, ErrorState]))
+      widgetVm._store.set('profileStates', List.of(IdleState, ErrorState))
 
       widgetVm.tryAgain()
       expect(widgetVm.profileStates.get(0)).toBe(IdleState)
