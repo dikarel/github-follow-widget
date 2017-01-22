@@ -1,5 +1,4 @@
 import PlaceholderRow from './PlaceholderRow'
-import {List} from 'immutable'
 import ProfileRow from './ProfileRow'
 import {GithubThrottledState, PossiblyOfflineState} from '../models/States'
 import React from 'react'
